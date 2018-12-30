@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:outputStylesheet library="css" name="styles.css" />	
+<f:metadata>
+	<f:event type="preRenderView"
+		listener="#{courseController.loadCourses}" />
+</f:metadata>
+<h:head>
+	<title>DCW Project 2018/19</title>
+</h:head>
+	<h:message for="addButton" styleClass="error"/>
+<br></br>
+<h:body>
+
+	<h2>Course</h2>
+	<h:form>
+		Course ID
+		<br></br>
+		<h:inputText value="#{course.cid}" id="cid"
+			p:placeholder="Course ID*" 
+			required="true" requiredMessage=" Course ID is mandatory!">
+		</h:inputText>
+		<h:message for="cid" errorClass="error"/> 
+		<br></br>
+		Name
+		<br></br>
+		<h:inputText value="#{course.cName}" id="cName"
+			p:placeholder="Course Name*" 
+			required="true" requiredMessage=" Name is mandatory!">
+		</h:inputText>
+		<h:message for="cName" errorClass="error"/> 
+		<br></br>
+		Duration
+		<br></br>
+		<h:selectOneMenu  value="#{course.duration}" id="duration">
+  		<f:selectItem itemValue="1" itemLabel="1 Year"/>
+  		<f:selectItem itemValue="2" itemLabel="2 Years"/>
+  		<f:selectItem itemValue="3" itemLabel="3 Years" />
+  		<f:selectItem itemValue="4" itemLabel="4 Years" />
+  		<f:selectItem itemValue="5" itemLabel="5 Years" />
+  		<f:selectItem itemValue="6" itemLabel="6 Years" />
+		</h:selectOneMenu >
+		<br></br>
+
+		<br></br>
+	<h:commandButton id="addButton" value="ADD" binding="#{courseController.addButton}" action="#{courseController.entryValidation(course)}"/>
+	</h:form>
+<h:link value="Home " outcome="index"/>
+&#160;
+<h:link value=" Courses" outcome="manageCourses"/>
+</h:body>
+</html>

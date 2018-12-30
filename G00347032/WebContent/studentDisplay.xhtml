@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+<f:metadata>
+	<f:event type="preRenderView"
+		listener="#{studentController.loadStudents}" />
+</f:metadata>
+
+<h:head>
+	<title>DCW Project 2018/19</title>
+</h:head>
+
+<body>
+<h:outputStylesheet library="css" name="table.css" />
+<h:outputStylesheet library="css" name="styles.css" />
+<h:form>
+	<h:commandButton value="Add Student" styleClass="addbutton" action="addStudent.xhtml"/>
+		<h:dataTable value="#{studentController.students}" var="s"
+			headerClass="table-header" rowClasses="table-odd-row, table-even-row">
+
+			<h:column>
+				<f:facet name="header">Student ID</f:facet>
+				<h:outputText value="#{s.sid}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Course ID</f:facet>
+				<h:outputText value="#{s.cid}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+				<h:outputText value=" #{s.name}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Action</f:facet>			
+				<h:commandLink value=" Delete"
+					action="#{studentController.delete(s)}">
+				</h:commandLink>
+			&#160;
+				<h:commandLink value="All Details"
+					action="#{studentController.passSidForJoin(s.sid)}">
+				</h:commandLink>
+			</h:column>
+
+		</h:dataTable>
+	</h:form>
+<h:link value="Home" outcome="index"/>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:outputStylesheet library="css" name="styles.css" />	
+<f:metadata>
+	<f:event type="preRenderView"
+		listener="#{studentController.loadStudents}" />
+</f:metadata>
+<h:head>
+	<title>DCW Project 2018/19</title>
+</h:head>
+	<h:message for="addButton" styleClass="error"/>
+<br></br>
+<h:body>
+
+	<h2>Add Student</h2>
+	<h:form>
+		Student ID
+		<br></br>
+		<h:inputText value="#{student.sid}" id="sid"
+			p:placeholder="Student ID*" 
+			required="true" requiredMessage=" Student ID is mandatory!">
+		</h:inputText>
+		<h:message for="sid" errorClass="error"/> 
+		<br></br>
+		Name
+		<br></br>
+		<h:inputText value="#{student.name}" id="name"
+			p:placeholder="Student Name*" 
+			required="true" requiredMessage=" Name is mandatory!">
+		</h:inputText>
+		<h:message for="name" errorClass="error"/> 
+		<br></br>
+		Address
+		<br></br>
+		<h:inputText value="#{student.address}" id="address"
+			p:placeholder="Student Address">
+		</h:inputText>
+		<br></br>
+		Course ID
+		<br></br>
+		<h:selectOneMenu value="#{student.cid}" id="cid">
+ 		<f:selectItem itemValue="BACC" itemLabel="BACC"/>
+  		<f:selectItem itemValue="BUS" itemLabel="BUS"/>
+  		<f:selectItem itemValue="DIG MEDIA" itemLabel="DIG MEDIA"/>
+  		<f:selectItem itemValue="EUROSTUD" itemLabel="EUROSTUD" />
+  		<f:selectItem itemValue="FINE" itemLabel="FINE" />
+  		<f:selectItem itemValue="HOSP" itemLabel="HOSP" />
+  		<f:selectItem itemValue="LAW" itemLabel="LAW" />
+  		<f:selectItem itemValue="PHY" itemLabel="PHY" />
+  		<f:selectItem itemValue="SW" itemLabel="SW" />
+		</h:selectOneMenu>
+		<h:message for="cid" errorClass="error"/> 
+		<br></br>
+		<h:commandButton id="addButton" value="ADD" binding="#{studentController.addButton}" action="#{studentController.entryValidation(student)}"/>
+	</h:form>
+<h:link value="Home" outcome="index"/>
+&#160;
+<h:link value="Students" outcome="studentDisplay"/>
+</h:body>
+</html>
